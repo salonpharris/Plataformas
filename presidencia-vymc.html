@@ -1,0 +1,1297 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Presidencia VyMC</title>
+<meta property="og:title" content="Presidencia VyMC">
+<meta property="og:description" content="Programa de la reunión Vida y Ministerio Cristiano">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Presidencia VyMC">
+<style>
+:root {
+  --primary:#8a5a34; --primary-light:#a97a4f; --highlight:#a8452f;
+  --treasures:#6b5540; --ministry:#6e4726; --living:#a8452f; --anuncios:#7a5033;
+  --bg:#efe3cc; --surface:#f2e6cc; --surface-alt:#e6d6b3;
+  --border:#c9a876; --text:#3d2b1a; --text-muted:#6b5540;
+  --input-bg:#fffaf0; --shadow:0 2px 10px rgba(90,60,30,.15);
+  --radius:12px; --radius-sm:7px; --fs:16px;
+}
+[data-theme="dark"] {
+  --primary:#c08a56; --primary-light:#d9a878; --highlight:#e07858;
+  --treasures:#cbb99e; --ministry:#c08a56; --living:#e07858; --anuncios:#a5713f;
+  --bg:#241a12; --surface:#33261a; --surface-alt:#2c2016;
+  --border:#5c4128; --text:#f2e6d3; --text-muted:#cbb99e;
+  --input-bg:#2b2019; --shadow:0 2px 12px rgba(0,0,0,.4);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  background:var(--bg);color:var(--text);line-height:1.55;padding:16px;
+  font-size:var(--fs);transition:background .25s,color .25s}
+.container{max-width:1020px;margin:0 auto;background:var(--surface);
+  padding:28px 32px;border-radius:var(--radius);box-shadow:var(--shadow)}
+
+/* TOOLBAR */
+.toolbar{display:flex;gap:6px;margin-bottom:20px;flex-wrap:wrap;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:5px;padding:7px 12px;
+  border-radius:var(--radius-sm);border:1px solid var(--border);
+  background:var(--surface-alt);color:var(--text);font-size:.8em;font-weight:500;
+  cursor:pointer;transition:background .15s,transform .1s;white-space:nowrap}
+.btn:hover{background:var(--border)}.btn:active{transform:translateY(1px)}
+.btn-p{background:var(--primary);color:#fff;border-color:var(--primary)}
+.btn-p:hover{background:var(--primary-light)}
+.btn-ok{background:#15803d;color:#fff;border-color:#15803d}
+.btn-ok:hover{background:#166534}
+
+/* DROPDOWN */
+.dd{position:relative}
+.ddm{display:none;position:absolute;top:calc(100% + 5px);left:0;min-width:255px;
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--radius-sm);box-shadow:var(--shadow);z-index:300;overflow:hidden}
+.ddm.open{display:block}
+.ddg{padding:5px 13px 3px;font-size:.68em;font-weight:700;letter-spacing:.08em;
+  color:var(--text-muted);text-transform:uppercase;background:var(--surface-alt)}
+.ddm a{display:block;padding:9px 14px;font-size:.85em;color:var(--text);text-decoration:none}
+.ddm a:hover{background:var(--surface-alt);color:var(--primary)}
+.ddm a.wkon{font-weight:700;color:var(--primary)}
+
+/* FONT CTRL */
+.fctr{display:flex;align-items:center;gap:5px;border:1px solid var(--border);
+  border-radius:var(--radius-sm);padding:4px 10px;background:var(--surface-alt)}
+.fctr input{width:80px;cursor:pointer;accent-color:var(--primary)}
+.fctr span{font-weight:700;color:var(--text-muted);line-height:1}
+
+/* MODAL */
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.52);
+  z-index:9000;align-items:center;justify-content:center}
+.modal.open{display:flex}
+.mbox{background:var(--surface);border-radius:14px;padding:26px;
+  width:93%;max-width:520px;box-shadow:0 10px 40px rgba(0,0,0,.3)}
+.mbox h3{font-size:1em;font-weight:700;margin-bottom:7px}
+.mbox p{font-size:.85em;color:var(--text-muted);margin-bottom:14px;line-height:1.6}
+.mbox code{background:var(--surface-alt);padding:1px 5px;border-radius:3px;font-size:.8em}
+.minp{width:100%;padding:9px 12px;border:1px solid var(--border);border-radius:7px;
+  font-size:.88em;background:var(--input-bg);color:var(--text);margin-bottom:10px;
+  outline:none;font-family:inherit}
+.minp:focus{border-color:var(--primary)}
+.mst{font-size:.82em;color:var(--text-muted);margin-bottom:10px;min-height:20px;line-height:1.5}
+.mft{display:flex;gap:8px;justify-content:flex-end}
+
+/* HEADER */
+header{border-bottom:3px solid var(--primary);padding-bottom:14px;margin-bottom:18px}
+.htop{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap}
+h1{color:var(--primary);font-size:1.1em;font-weight:800;letter-spacing:.02em}
+.tred{color:var(--highlight);font-size:1.1em;font-weight:800;
+  text-transform:uppercase;letter-spacing:.06em;white-space:nowrap}
+.rrow{margin-top:10px;font-size:.88em;color:var(--text-muted);
+  display:flex;align-items:center;flex-wrap:wrap;gap:10px;justify-content:space-between}
+.rrow .val{color:var(--text);font-weight:700}
+.lsm{font-size:.72em;font-weight:700;color:var(--text-muted);
+  text-transform:uppercase;letter-spacing:.06em;white-space:nowrap}
+.iln{font-family:inherit;font-size:.9em;font-weight:600;color:var(--text);
+  border:none;border-bottom:1.5px dashed var(--border);background:transparent;
+  padding:2px 5px;outline:none;transition:border-color .15s}
+.iln:focus{border-color:var(--primary)}
+.iln::placeholder{color:var(--text-muted);font-weight:400}
+/* Pres-ora-E block flush right */
+.pob{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-left:auto}
+
+/* BTN E */
+.bte{background:rgba(255,255,255,.25);border:1px solid rgba(255,255,255,.6);
+  color:#fff;font-size:.75em;font-weight:800;padding:3px 9px;border-radius:5px;
+  cursor:pointer;flex-shrink:0;line-height:1.5;transition:background .15s}
+.bte:hover{background:rgba(255,255,255,.45)}
+.bte-hdr{background:var(--primary);border:1px solid var(--primary-light);
+  color:#fff;font-size:.75em;font-weight:800;padding:3px 9px;border-radius:5px;
+  cursor:pointer;flex-shrink:0;line-height:1.5;transition:background .15s}
+.bte-hdr:hover{background:var(--primary-light)}
+
+/* SECTION HEADERS */
+.sh{color:#fff;padding:8px 14px;font-weight:700;font-size:.85em;
+  text-transform:uppercase;letter-spacing:.06em;border-radius:var(--radius-sm);
+  margin:22px 0 12px;display:flex;align-items:center;gap:8px}
+.sh .st{flex:1}
+.bgT{background:var(--treasures)}.bgM{background:var(--ministry)}
+.bgL{background:var(--living)}.bgA{background:var(--anuncios)}
+
+/* ASSIGNMENT */
+.asgn{background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--radius-sm);padding:12px 14px;margin-bottom:9px}
+.asgn:hover{box-shadow:var(--shadow)}
+
+/* Compact row — title+time+crono+person all inline */
+.crow{display:flex;align-items:center;gap:8px;min-width:0;flex-wrap:nowrap}
+.anum{font-weight:800;font-size:.9em;color:var(--text-muted);white-space:nowrap;flex-shrink:0}
+.atit{font-weight:700;font-size:.9em;white-space:nowrap;overflow:hidden;
+  text-overflow:ellipsis;flex:1;min-width:0}
+.atim{font-weight:600;color:var(--text-muted);font-size:.78em;white-space:nowrap;flex-shrink:0}
+
+/* Ministry title editable — takes remaining space */
+.mi-ti{font-family:inherit;font-size:.88em;font-weight:600;
+  border:1px solid var(--border);border-radius:5px;background:var(--input-bg);
+  color:var(--text);padding:3px 8px;flex:1;min-width:0}
+.mi-ti:focus{outline:none;border-color:var(--primary)}
+.mi-tm{font-family:inherit;font-size:.78em;font-weight:600;
+  border:1px solid var(--border);border-radius:5px;background:var(--input-bg);
+  color:var(--text-muted);padding:3px 7px;width:70px;flex-shrink:0}
+.mi-tm:focus{outline:none;border-color:var(--primary)}
+
+/* Living title editable — full width input */
+.li-ti{font-family:inherit;font-size:.88em;font-weight:600;
+  border:1px solid var(--border);border-radius:5px;background:var(--input-bg);
+  color:var(--text);padding:3px 8px;flex:1;min-width:120px}
+.li-ti:focus{outline:none;border-color:var(--primary)}
+.li-tm{font-family:inherit;font-size:.78em;font-weight:600;
+  border:1px solid var(--border);border-radius:5px;background:var(--input-bg);
+  color:var(--text-muted);padding:3px 7px;width:70px;flex-shrink:0}
+.li-tm:focus{outline:none;border-color:var(--primary)}
+
+/* Compact person inline */
+.clbl{font-size:.72em;font-weight:700;color:var(--text-muted);
+  text-transform:uppercase;white-space:nowrap;flex-shrink:0;margin-left:6px}
+.cinp{padding:3px 8px;font-size:.85em;border:1px solid var(--border);
+  border-radius:5px;background:var(--input-bg);color:var(--text);
+  font-family:inherit;width:145px;flex-shrink:0}
+.cinp:focus{outline:none;border-color:var(--primary)}
+
+/* CRONO */
+.crono{display:flex;align-items:center;gap:4px;flex-shrink:0;margin-left:10px}
+.crd{font-size:1em;font-weight:800;color:var(--primary);min-width:44px;letter-spacing:.03em}
+[data-theme="dark"] .crd{color:#a78bfa}
+.crb{width:26px;height:26px;border-radius:5px;border:1px solid var(--border);
+  background:var(--surface-alt);color:var(--text);cursor:pointer;font-size:13px;
+  display:flex;align-items:center;justify-content:center;transition:background .12s}
+.crb:hover{background:var(--border)}
+
+/* Order actions */
+.oact{display:flex;gap:4px;flex-shrink:0;margin-left:8px}
+.bic{width:25px;height:25px;border:1px solid var(--border);background:var(--surface-alt);
+  border-radius:5px;cursor:pointer;font-size:10px;display:flex;align-items:center;
+  justify-content:center;transition:background .12s}
+.bic:hover{background:var(--border)}
+.bic.del{background:#fee2e2;border-color:#fca5a5}
+.bic.del:hover{background:#fca5a5}
+
+/* Person row */
+.prow{display:flex;align-items:center;gap:7px;margin-top:8px;flex-wrap:wrap}
+.pinp{padding:5px 9px;font-size:.88em;border:1px solid var(--border);
+  border-radius:5px;background:var(--input-bg);color:var(--text);
+  font-family:inherit;width:168px}
+.pinp:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 2px rgba(74,59,104,.15)}
+
+/* Notes */
+.nw{margin-top:8px}
+.nw textarea{width:100%;padding:7px 10px;border:1px solid transparent;
+  border-radius:5px;font-size:.85em;font-family:inherit;background:transparent;
+  color:var(--text);resize:none;height:38px;max-height:115px;overflow-y:auto;
+  transition:border-color .15s,background .15s}
+.nw textarea:hover,.nw textarea:focus,.nw textarea:not(:placeholder-shown){
+  border-color:var(--border);background:var(--surface-alt)}
+
+/* Song */
+.sinp{font-family:inherit;font-size:.95em;font-weight:600;border:1px solid transparent;
+  background:transparent;color:var(--text);padding:3px 5px;border-radius:5px;
+  width:100%;transition:border-color .15s,background .15s}
+.sinp:hover,.sinp:focus{border-color:var(--border);background:var(--input-bg);outline:none}
+
+/* Add btn */
+.addw{display:flex;justify-content:center;margin:10px 0 4px}
+.btna{width:36px;height:36px;border-radius:50%;border:none;color:#fff;
+  font-size:22px;cursor:pointer;display:flex;align-items:center;justify-content:center;
+  box-shadow:0 3px 10px rgba(0,0,0,.22);transition:transform .1s}
+.btna:hover{transform:scale(1.08)}
+
+/* AC */
+.acul{position:absolute;top:100%;left:0;z-index:999;background:var(--surface);
+  border:1px solid var(--border);border-radius:7px;box-shadow:var(--shadow);
+  list-style:none;margin:2px 0 0;padding:4px 0;min-width:155px;
+  max-height:140px;overflow-y:auto;display:none;font-size:.85em}
+.acul li{padding:6px 13px;cursor:pointer}
+.acul li:hover,.acul li.acon{background:var(--surface-alt)}
+
+/* Src line */
+.srcl{font-size:.78em;font-style:italic;color:var(--text-muted);margin-top:3px}
+
+/* Theme btn */
+.tgb{padding:7px 10px;font-size:16px;background:var(--surface-alt);
+  border:1px solid var(--border);border-radius:var(--radius-sm);cursor:pointer}
+.tgb:hover{background:var(--border)}
+
+/* Toast */
+#toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(90px);
+  background:#1e2128;color:#fff;padding:11px 22px;border-radius:26px;
+  font-size:.85em;font-weight:600;box-shadow:0 4px 22px rgba(0,0,0,.32);
+  transition:transform .3s cubic-bezier(.34,1.56,.64,1);z-index:9999;pointer-events:none}
+#toast.show{transform:translateX(-50%) translateY(0)}
+#toast.err{background:#dc2626}#toast.ok{background:#15803d}
+#sav{font-size:.72em;color:var(--text-muted);opacity:0;transition:opacity .4s}
+#sav.vis{opacity:1}
+
+/* Hyperlinks in notes */
+.nw-links{font-size:.83em;color:var(--text-muted);margin-top:4px;word-break:break-all;line-height:1.6}
+.nw-links a{color:var(--primary);text-decoration:underline;cursor:pointer}
+.nw-links a:hover{color:var(--primary-light)}
+
+/* ═══ PRINT ═══ */
+@media print {
+  @page{size:letter;margin:11mm 12mm}
+  html,body{background:#fff!important;color:#000!important;padding:0!important;margin:0!important}
+  .container{max-width:100%!important;box-shadow:none!important;padding:0!important;margin:0!important;background:#fff!important}
+  .toolbar,.no-print,.oact,.addw,.btna,.bte,.bte-hdr,.crono,.modal{display:none!important}
+  .nw textarea:placeholder-shown{display:none!important}
+  .asgn{border:none!important;border-bottom:1px solid #ccc!important;border-radius:0!important;
+    padding:6px 0!important;page-break-inside:avoid!important;break-inside:avoid!important;background:#fff!important}
+  .asgn:hover{box-shadow:none!important}
+  .sh{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;
+    page-break-after:avoid!important;break-after:avoid!important;margin-top:8px!important}
+  header{margin-bottom:10px!important;page-break-after:avoid!important;break-after:avoid!important}
+  input,textarea{border:none!important;border-bottom:1px dotted #aaa!important;
+    border-radius:0!important;background:transparent!important;color:#000!important;
+    box-shadow:none!important;padding:1px 0!important}
+  textarea{height:auto!important;overflow:visible!important}
+  .nw a{color:#000!important;text-decoration:underline!important}
+
+  /* DEFAULT (sin ajuste de fuente): 2 hojas
+     Hoja 1: encabezado + tesoros + seamos mejores maestros
+     Hoja 2: nuestra vida cristiana + resto */
+  #secMin{page-break-before:auto!important;break-before:auto!important}
+  #secLiv{page-break-before:always!important;break-before:page!important}
+
+  /* FUENTE AJUSTADA (fslg): 3 hojas
+     Hoja 1: encabezado + tesoros
+     Hoja 2: seamos mejores maestros
+     Hoja 3: nuestra vida cristiana + resto */
+  body.fslg #secMin{page-break-before:always!important;break-before:page!important}
+  body.fslg #secLiv{page-break-before:always!important;break-before:page!important}
+}
+@media(max-width:700px){
+  body{padding:6px}
+  .container{padding:12px 10px;border-radius:8px}
+  .btn{padding:6px 8px;font-size:.73em}
+  .pob{margin-left:0;flex-wrap:wrap;gap:6px}
+  .crow{flex-wrap:wrap;gap:6px}
+  .cinp{width:120px}
+  .pinp{width:140px}
+  .atit{white-space:normal}
+  .crono{margin-left:0}
+  .rrow{flex-direction:column;gap:8px;align-items:flex-start}
+  h1{font-size:.95em}
+  .toolbar{gap:4px}
+  .iln{width:160px!important}
+  .mbox{padding:18px;width:97%}
+}
+@media(max-width:420px){
+  .btn{padding:5px 7px;font-size:.7em}
+
+  /* ── 1) Oración INICIAL below Presidente ── */
+  .pob{flex-direction:column;align-items:flex-start;gap:5px;width:100%}
+  .pob .iln{width:100%!important}
+
+  /* ── 2) Assignment rows: stack everything vertically, full width ── */
+
+  /* Title + time on one line, full width */
+  .crow{flex-wrap:wrap;gap:4px;align-items:center}
+  .atit,.mi-ti,.li-ti{
+    white-space:nowrap!important;overflow:hidden;text-overflow:ellipsis;
+    flex:1 1 auto!important;min-width:0;max-width:100%;font-size:.88em
+  }
+  .atim,.mi-tm,.li-tm{flex-shrink:0;font-size:.78em}
+
+  /* Crono on its own line */
+  .crono{width:100%;margin-left:0;margin-top:2px;order:10}
+
+  /* Hide oact (move/delete) inline — still accessible */
+  .oact{order:11;margin-left:auto}
+
+  /* Person row: each label+input stacked full width */
+  .prow{
+    display:flex;flex-direction:column;gap:5px;
+    margin-top:6px;width:100%
+  }
+  .prow>span.lsm{margin-left:0!important}
+  .prow>div{width:100%!important}
+  .prow .pinp,.cinp{width:100%!important;box-sizing:border-box}
+
+  /* For T1/T2/T3 inline cinp: also stack */
+  .crow .clbl{margin-left:0;order:5;width:100%;margin-top:4px}
+  .crow>div[style*="relative"]{width:100%!important;order:6}
+  .crow>div[style*="relative"] .cinp{width:100%!important}
+
+  /* Notes full width */
+  .nw textarea{width:100%}
+
+  /* Header fields full width */
+  .cinp{width:100%!important}
+  .iln{width:100%!important}
+
+  /* ── 3) Song fields: strip "y oración" via JS ── */
+
+  /* ── Final song: stack oración final below canción ── */
+  .final-crow{flex-direction:column;align-items:flex-start!important;gap:6px}
+  .final-crow #inS3{flex:1 1 100%!important;width:100%!important;min-width:0!important}
+  .final-spacer{display:none}
+  .final-ora-lbl{margin-top:4px}
+  .final-crow>div{width:100%!important}
+  .final-crow .pinp{width:100%!important}
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- TOOLBAR -->
+<div class="toolbar no-print">
+  <div class="fctr no-print">
+    <span style="font-size:11px">A</span>
+    <input type="range" id="fsR" min="100" max="160" value="100" step="5" oninput="applyFS(this.value)">
+    <span style="font-size:17px">A</span>
+  </div>
+  <div class="dd">
+    <button class="btn" id="wkBtn" onclick="ddTg()">📅 Semana…</button>
+    <div id="wkDD" class="ddm">
+      <div class="ddg">Junio 2026</div>
+      <a href="#" onclick="ep(event);lw('w1')" data-wk="w1">22–28 de junio</a>
+      <div class="ddg">Julio 2026</div>
+      <a href="#" onclick="ep(event);lw('w2')" data-wk="w2">29 jun – 5 jul</a>
+      <a href="#" onclick="ep(event);lw('w3')" data-wk="w3">6–12 de julio</a>
+      <a href="#" onclick="ep(event);lw('w4')" data-wk="w4">13–19 de julio</a>
+      <a href="#" onclick="ep(event);lw('w5')" data-wk="w5">20–26 de julio</a>
+      <a href="#" onclick="ep(event);lw('w6')" data-wk="w6">27 jul – 2 ago</a>
+    </div>
+  </div>
+  <button class="btn" onclick="doUndo()" title="Deshacer último guardado">↩️ Deshacer</button>
+  <button class="btn" onclick="doShare()">📩 Compartir</button>
+  <button class="btn" onclick="openExport()">⬇️ Exportar</button>
+  <button class="btn" onclick="G('impF').click()">⬆️ Importar</button>
+  <input type="file" id="impF" accept=".json" style="display:none" onchange="impJSON(event)">
+  <button class="btn" onclick="doPrint()">🖨️ Imprimir</button>
+  <button class="btn" onclick="doVyMC()" title="Imprimir hoja para tablero de anuncios">📋 VyMC</button>
+  <button class="btn" onclick="window.open('https://drive.google.com/drive/folders/1GSXSRI749JfCSUKiEJ0L0T8Z4qQVBG9T?usp=sharing','_blank')" title="Abrir carpeta de respaldo en Google Drive">💾 Backup</button>
+  <span id="sav">✓ Guardado</span>
+  <button class="tgb" onclick="tgTh()">🌙</button>
+</div>
+
+<!-- MODAL EXPORTAR -->
+<div class="modal" id="exportM">
+  <div class="mbox">
+    <h3 style="margin-bottom:12px">⬇️ Exportar programa</h3>
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <button class="btn" style="justify-content:flex-start;padding:12px 16px;font-size:.9em" onclick="expJSON();closeExport()">
+        💾 Guardar archivo en carpeta local
+      </button>
+      <button class="btn" style="justify-content:flex-start;padding:12px 16px;font-size:.9em" onclick="expWhatsApp()">
+        💬 Compartir por WhatsApp
+      </button>
+      <button class="btn" style="justify-content:flex-start;padding:12px 16px;font-size:.9em" onclick="expEmail()">
+        ✉️ Enviar por correo electrónico
+      </button>
+    </div>
+    <div class="mft" style="margin-top:16px">
+      <button class="btn" onclick="closeExport()">Cerrar</button>
+    </div>
+  </div>
+</div>
+
+<!-- ════ HEADER ════ -->
+<div id="expHdr">
+<header>
+  <div style="text-align:center;margin-bottom:10px">
+    <h1 style="font-size:1em;font-weight:900;letter-spacing:.02em;color:var(--primary);line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">
+      Programa Presidencia VyMC
+    </h1>
+  </div>
+  <div style="display:flex;align-items:center;gap:7px;flex-wrap:wrap;justify-content:flex-start;margin-bottom:8px">
+    <span class="lsm">Congregación</span>
+    <input type="text" id="inCong" class="iln" placeholder="PAUL HARRIS"
+      style="width:200px" oninput="lss('presCong',this.value)">
+  </div>
+  <!-- Reading + Pres/Ora/E all in one row, pob pushed right -->
+  <div class="rrow">
+    <span style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
+      <span>Lectura bíblica semanal:</span>
+      <input type="text" id="lblR" class="iln" placeholder="…" style="min-width:160px;font-weight:700;color:var(--text)" oninput="ss()">
+    </span>
+    <div class="pob">
+      <span class="lsm">Presidente</span>
+      <input type="text" id="inPres" class="iln" placeholder="Nombre"
+        style="width:130px" oninput="lss('presPres',this.value)">
+      <span class="lsm">Oración INICIAL</span>
+      <input type="text" id="inOra1" class="iln" placeholder="Hermano"
+        style="width:130px" oninput="ss();acI(this)">
+      <button class="bte-hdr no-print" onclick="expJpg('expHdr','encabezado')">E</button>
+    </div>
+  </div>
+</header>
+<!-- Song apertura -->
+<div class="asgn">
+  <input type="text" class="sinp" id="inS1" value="…" oninput="ss()">
+  <div class="nw"><textarea id="inS1nt" placeholder="Notas…" oninput="aG(this);ss()"></textarea></div>
+</div>
+</div><!-- /expHdr -->
+
+<!-- ════ TESOROS ════ -->
+<div id="expTes">
+<div class="sh bgT">
+  <span class="st">Tesoros de la Biblia</span>
+  <button class="bte no-print" onclick="expJpg('expTes','tesoros_de_la_biblia')">E</button>
+</div>
+
+<!-- T1: num + title(editable) + time + crono + Orador + input — all same line -->
+<div class="asgn">
+  <div class="crow">
+    <span class="anum">1.</span>
+    <input type="text" class="atit" id="lblT1" placeholder="Título…" oninput="ss()" style="flex:1;min-width:0;font-weight:700;font-size:.9em;border:none;border-bottom:1.5px dashed var(--border);background:transparent;padding:2px 4px;outline:none;font-family:inherit;color:var(--text)">
+    <span class="atim" id="lblT1t"></span>
+    <div class="crono no-print" data-s="0" data-r="0">
+      <span class="crd">0:00</span>
+      <button class="crb" onclick="cTog(this)">▶</button>
+      <button class="crb" onclick="cRes(this)">↺</button>
+    </div>
+    <span class="clbl">Orador</span>
+    <div style="position:relative;flex-shrink:0">
+      <input type="text" class="cinp" id="inT1" placeholder="Hermano" oninput="ss();acI(this)">
+    </div>
+  </div>
+  <div class="nw"><textarea placeholder="Notas…" oninput="aG(this);ss()"></textarea></div>
+</div>
+
+<!-- T2 -->
+<div class="asgn">
+  <div class="crow">
+    <span class="anum">2.</span>
+    <span class="atit" id="lblT2"></span>
+    <span class="atim" id="lblT2t"></span>
+    <div class="crono no-print" data-s="0" data-r="0">
+      <span class="crd">0:00</span>
+      <button class="crb" onclick="cTog(this)">▶</button>
+      <button class="crb" onclick="cRes(this)">↺</button>
+    </div>
+    <span class="clbl">Orador</span>
+    <div style="position:relative;flex-shrink:0">
+      <input type="text" class="cinp" id="inT2" placeholder="Hermano" oninput="ss();acI(this)">
+    </div>
+  </div>
+  <div class="nw"><textarea placeholder="Notas…" oninput="aG(this);ss()"></textarea></div>
+</div>
+
+<!-- T3 -->
+<div class="asgn">
+  <div class="crow">
+    <span class="anum">3.</span>
+    <input type="text" class="atit" id="lblT3" placeholder="Lectura de la Biblia…" oninput="ss()" style="flex:0 1 42%;min-width:90px;font-weight:700;font-size:.9em;border:none;border-bottom:1.5px dashed var(--border);background:transparent;padding:2px 4px;outline:none;font-family:inherit;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">
+    <span style="flex:1"></span>
+    <span class="atim" id="lblT3t"></span>
+    <div class="crono no-print" data-s="0" data-r="0">
+      <span class="crd">0:00</span>
+      <button class="crb" onclick="cTog(this)">▶</button>
+      <button class="crb" onclick="cRes(this)">↺</button>
+    </div>
+    <span class="clbl">Estudiante</span>
+    <div style="position:relative;flex-shrink:0">
+      <input type="text" class="cinp" id="inT3" placeholder="Hermano" oninput="ss();acI(this)">
+    </div>
+  </div>
+  <div class="nw"><textarea placeholder="Notas…" oninput="aG(this);ss()"></textarea></div>
+</div>
+</div><!-- /expTes -->
+
+<!-- ════ MINISTERIO ════ -->
+<div id="secMin">
+<div id="expMin">
+<div class="sh bgM">
+  <span class="st">Seamos mejores maestros</span>
+  <button class="bte no-print" onclick="expJpg('expMin','seamos_mejores_maestros')">E</button>
+</div>
+<div id="minC"></div>
+<div class="addw no-print">
+  <button class="btna" style="background:var(--ministry)" onclick="addM()">+</button>
+</div>
+</div>
+</div><!-- /secMin -->
+
+<!-- ════ VIDA CRISTIANA ════ -->
+<div id="secLiv">
+<div id="expLiv">
+<div class="sh bgL">
+  <span class="st">Nuestra vida cristiana</span>
+  <button class="bte no-print" onclick="expJpg('expLiv','nuestra_vida_cristiana')">E</button>
+</div>
+<div class="asgn">
+  <input type="text" class="sinp" id="inS2" value="…" oninput="ss()">
+</div>
+<div id="livC"></div>
+<div class="addw no-print">
+  <button class="btna no-print" style="background:var(--living)" onclick="addL()">+</button>
+</div>
+
+<!-- Final -->
+<div class="asgn">
+  <div class="crow final-crow" style="flex-wrap:wrap;gap:8px;align-items:center">
+    <input type="text" class="sinp" id="inS3" value="…" oninput="ss()" style="flex:0 1 45%;min-width:140px">
+    <span class="atim" id="lblOt"></span>
+    <span class="final-spacer" style="flex:1"></span>
+    <span class="lsm final-ora-lbl">Oración final</span>
+    <div style="position:relative;flex-shrink:0">
+      <input type="text" class="pinp" id="inOra2" placeholder="Hermano" oninput="ss();acI(this)">
+    </div>
+  </div>
+</div>
+</div>
+</div><!-- /secLiv -->
+
+<!-- ════ ANUNCIOS ════ -->
+<div style="margin:18px 0 12px;display:flex;align-items:baseline;flex-wrap:wrap;gap:6px">
+  <span style="font-size:.88em;font-weight:700;color:var(--text-muted)">NO olvidar preguntar...</span>
+  <span style="font-size:1.05em;font-weight:800;color:#a8452f">¿Qué aspectos considera beneficiosos de esta reunión?</span>
+</div>
+<div style="display:flex;flex-direction:column;gap:0">
+  <div id="ntProgC"></div>
+  <button class="btn" style="align-self:flex-start;margin-bottom:8px" onclick="addNtProg(this)">+ Agregar notas de aspectos interesantes del programa de la semana siguiente</button>
+  <div id="ntEstC"></div>
+  <button class="btn" style="align-self:flex-start;margin-bottom:8px" onclick="addNtEst(this)">+ Agregar notas de nombres de estudiantes que participarán próxima semana</button>
+  <div id="anunC"></div>
+  <button class="btn" style="align-self:flex-start;margin-top:4px" onclick="addAn()">+ Agregar anuncio</button>
+</div>
+
+</div><!-- /container -->
+<div id="toast"></div>
+
+<script>
+/* ══ DATA — verified week-by-week ══ */
+const WD = {
+  w1:{lb:'📅 22–28 JUN 2026',rd:'Jeremías 9, 10',
+    s1:'Canción 5',
+    t1:'¿De qué presumirá usted?',t1t:'(10 min)',
+    t2:'Busquemos perlas escondidas',t2t:'(10 min)',
+    t3:'Lectura de la Biblia: Jer 9:13-24',t3t:'(4 min)',
+    mi:[{ti:'Empiece conversaciones (predicación informal)',tm:'(4 min)'},
+        {ti:'Empiece conversaciones (de casa en casa)',tm:'(4 min)'},
+        {ti:'Haga revisitas',tm:'(4 min)'}],
+    s2:'Canción 48',
+    li:[{ti:'«No nos dejemos engañar; apoyemos el Reino de Dios»',src:'Jer 10:23; análisis con el auditorio',tm:'(15 min)',tp:'n'},
+        {ti:'Estudio bíblico de congregación',src:'',tm:'(30 min)',tp:'b'}],
+    s3:'Canción 58',ot:''},
+  w2:{lb:'📅 29 JUN – 5 JUL 2026',rd:'Jeremías 11, 12',
+    s1:'Canción 119',
+    t1:'Jehová recuerda su pacto',t1t:'(10 min)',
+    t2:'Busquemos perlas escondidas',t2t:'(10 min)',
+    t3:'Lectura de la Biblia: Jer 11:9-17',t3t:'(4 min)',
+    mi:[{ti:'Haga revisitas',tm:'(4 min)'},
+        {ti:'Explique sus creencias',tm:'(4 min)'}],
+    s2:'Canción 35',
+    li:[{ti:'Necesidades de la congregación',src:'análisis con el auditorio',tm:'(15 min)',tp:'n'},
+        {ti:'Estudio bíblico de congregación',src:'',tm:'(30 min)',tp:'b'}],
+    s3:'Canción 58',ot:''},
+  w3:{lb:'📅 6–12 JUL 2026',rd:'Jeremías 13, 14',
+    s1:'Canción 24',
+    t1:'El cinturón de lino podrido',t1t:'(10 min)',
+    t2:'Busquemos perlas escondidas',t2t:'(10 min)',
+    t3:'Lectura de la Biblia: Jer 13:12-22',t3t:'(4 min)',
+    mi:[{ti:'Empiece conversaciones',tm:'(4 min)'},
+        {ti:'Haga revisitas',tm:'(4 min)'}],
+    s2:'Canción 76',
+    li:[{ti:'Logros de la organización de Jehová',src:'video y análisis',tm:'(15 min)',tp:'n'},
+        {ti:'Estudio bíblico de congregación',src:'',tm:'(30 min)',tp:'b'}],
+    s3:'Canción 58',ot:''},
+  w4:{lb:'📅 13–19 JUL 2026',rd:'Jeremías 15, 16',
+    s1:'Canción 88',
+    t1:'Encontré tus palabras y me las comí',t1t:'(10 min)',
+    t2:'Busquemos perlas escondidas',t2t:'(10 min)',
+    t3:'Lectura de la Biblia: Jer 15:1-9',t3t:'(4 min)',
+    mi:[{ti:'Haga revisitas',tm:'(4 min)'},
+        {ti:'Explique sus creencias',tm:'(4 min)'}],
+    s2:'Canción 141',
+    li:[{ti:'Mantengamos el gozo a pesar de la oposición',src:'Jer 15:15; análisis con el auditorio',tm:'(15 min)',tp:'n'},
+        {ti:'Estudio bíblico de congregación',src:'',tm:'(30 min)',tp:'b'}],
+    s3:'Canción 58',ot:''},
+  w5:{lb:'📅 20–26 JUL 2026',rd:'Jeremías 17, 18',
+    s1:'Canción 3',
+    t1:'Confiemos plenamente en Jehová',t1t:'(10 min)',
+    t2:'Busquemos perlas escondidas',t2t:'(10 min)',
+    t3:'Lectura de la Biblia: Jer 17:19-27',t3t:'(4 min)',
+    mi:[{ti:'Empiece conversaciones',tm:'(4 min)'},
+        {ti:'Haga revisitas',tm:'(4 min)'}],
+    s2:'Canción 54',
+    li:[{ti:'El corazón es más engañoso que todo lo demás',src:'Jer 17:9; análisis con el auditorio',tm:'(15 min)',tp:'n'},
+        {ti:'Estudio bíblico de congregación',src:'',tm:'(30 min)',tp:'b'}],
+    s3:'Canción 58',ot:''},
+  w6:{lb:'📅 27 JUL – 2 AGO 2026',rd:'Jeremías 19, 20',
+    s1:'Canción 92',
+    t1:'La palabra de Jehová ardía como fuego',t1t:'(10 min)',
+    t2:'Busquemos perlas escondidas',t2t:'(10 min)',
+    t3:'Lectura de la Biblia: Jer 20:1-11',t3t:'(4 min)',
+    mi:[{ti:'Explique sus creencias',tm:'(4 min)'},
+        {ti:'Haga discípulos',tm:'(4 min)'},
+        {ti:'Haga revisitas',tm:'(3 min)'}],
+    s2:'Canción 104',
+    li:[{ti:'Jehová está conmigo como un guerrero imponente',src:'Jer 20:11; análisis con el auditorio',tm:'(15 min)',tp:'n'},
+        {ti:'Estudio bíblico de congregación',src:'',tm:'(30 min)',tp:'b'}],
+    s3:'Canción 58',ot:''}
+};
+
+let cw='w1', cTh=localStorage.getItem('pTh')||'light';
+let nms=JSON.parse(localStorage.getItem('pNms')||'[]');
+let cid=0;
+
+/* ── UTILS ── */
+const G=id=>document.getElementById(id);
+const ep=e=>e.preventDefault();
+const lss=(k,v)=>localStorage.setItem(k,v);
+function x(s){return String(s||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function gv(id){return G(id)?.value||'';}
+function sv(id,v){const e=G(id);if(e)e.value=v;}
+
+/* ── THEME ── */
+function apTh(t){document.documentElement.setAttribute('data-theme',t);document.querySelector('.tgb').textContent=t==='dark'?'☀️':'🌙';}
+function tgTh(){cTh=cTh==='light'?'dark':'light';lss('pTh',cTh);apTh(cTh);}
+
+/* ── TOAST ── */
+let _tt;
+function toast(m,tp=''){const el=G('toast');el.textContent=m;el.className='show '+(tp||'');clearTimeout(_tt);_tt=setTimeout(()=>el.className='',2900);}
+function showSav(){const el=G('sav');el.classList.add('vis');setTimeout(()=>el.classList.remove('vis'),2000);}
+
+/* ── AUTOGROW ── */
+function aG(el){el.style.height='38px';el.style.height=Math.min(el.scrollHeight,115)+'px';}
+
+/* ── FONT SIZE ── */
+function applyFS(v){
+  document.body.style.fontSize=(v/100*16)+'px';
+  document.body.classList.toggle('fslg',+v>=130);
+  lss('pFS',v);
+}
+
+/* ── DROPDOWN ── */
+function ddTg(){G('wkDD').classList.toggle('open');}
+document.addEventListener('click',e=>{if(!e.target.closest('.dd'))G('wkDD').classList.remove('open');});
+
+/* ── CRONO ── */
+const CT=new Map();
+function cTog(btn){
+  const w=btn.closest('.crono');
+  if(w.dataset.r==='1'){clearInterval(CT.get(w));CT.delete(w);w.dataset.r='0';btn.textContent='▶';}
+  else{w.dataset.r='1';btn.textContent='⏸';
+    CT.set(w,setInterval(()=>{const s=+w.dataset.s+1;w.dataset.s=s;
+      w.querySelector('.crd').textContent=Math.floor(s/60)+':'+(s%60<10?'0':'')+s%60;},1000));}
+}
+function cRes(btn){
+  const w=btn.closest('.crono');clearInterval(CT.get(w));CT.delete(w);
+  w.dataset.r='0';w.dataset.s='0';
+  w.querySelector('.crd').textContent='0:00';
+  w.querySelector('.crb').textContent='▶';
+}
+
+/* ── AUTOCOMPLETE ── */
+function acI(inp){
+  let ul=inp.parentNode.querySelector('.acul');
+  if(!ul){
+    ul=document.createElement('ul');ul.className='acul';inp.parentNode.appendChild(ul);
+    inp.addEventListener('blur',()=>setTimeout(()=>ul.style.display='none',150));
+    inp.addEventListener('keydown',e=>{
+      const its=[...ul.querySelectorAll('li')],ai=its.findIndex(i=>i.classList.contains('acon'));
+      if(e.key==='ArrowDown'){e.preventDefault();its.forEach(i=>i.classList.remove('acon'));its[(ai+1)%its.length]?.classList.add('acon');}
+      else if(e.key==='ArrowUp'){e.preventDefault();its.forEach(i=>i.classList.remove('acon'));its[(ai-1+its.length)%its.length]?.classList.add('acon');}
+      else if(e.key==='Enter'){const a=ul.querySelector('.acon');if(a){inp.value=a.textContent;ul.style.display='none';ss();}}
+      else if(e.key==='Escape')ul.style.display='none';
+    });
+  }
+  const v=inp.value.trim().toLowerCase();ul.innerHTML='';
+  if(!v){ul.style.display='none';return;}
+  const m=nms.filter(n=>n.toLowerCase().includes(v));
+  if(!m.length){ul.style.display='none';return;}
+  m.forEach(n=>{const li=document.createElement('li');li.textContent=n;
+    li.onmousedown=e=>{e.preventDefault();inp.value=n;ul.style.display='none';ss();};ul.appendChild(li);});
+  ul.style.display='block';
+}
+function savNm(v){v=v.trim();if(!v||nms.includes(v))return;nms.push(v);nms.sort();lss('pNms',JSON.stringify(nms));}
+
+/* ── BUILD MINISTRY ── */
+function mkM(id,ti='',tm='',st='',hl='',nt=''){
+  const d=document.createElement('div');d.className='asgn';d.id='m'+id;
+  d.innerHTML=`
+    <div class="crow">
+      <span class="anum mn"></span>
+      <input class="mi-ti" value="${x(ti)}" placeholder="Título del tema…" oninput="ss()">
+      <input class="mi-tm" value="${x(tm)}" placeholder="(min)" oninput="ss()">
+      <div class="crono no-print" data-s="0" data-r="0">
+        <span class="crd">0:00</span>
+        <button class="crb" onclick="cTog(this)">▶</button>
+        <button class="crb" onclick="cRes(this)">↺</button>
+      </div>
+      <div class="oact no-print">
+        <button class="bic" onclick="mvU(this)">🔼</button>
+        <button class="bic" onclick="mvD(this)">🔽</button>
+        <button class="bic del" onclick="this.closest('.asgn').remove();rn();ss()">✕</button>
+      </div>
+    </div>
+    <div class="prow" style="align-items:center">
+      <span class="lsm">Estudiante</span>
+      <div style="position:relative"><input type="text" class="pinp ms" value="${x(st)}" placeholder="Hermano" oninput="ss();acI(this)"></div>
+      <span class="lsm mh-lbl" style="margin-left:8px">Ayudante</span>
+      <input type="text" class="pinp mh" value="${x(hl)}" placeholder="Hermano" oninput="ss();acI(this)" style="margin-right:2px">
+      <button class="bic del mh-del no-print" title="Quitar ayudante" onclick="
+        const p=this.closest('.prow');
+        p.querySelector('.mh-lbl').style.display='none';
+        p.querySelector('.mh').style.display='none';
+        p.querySelector('.mh').value='';
+        this.style.display='none';
+        ss();">✕</button>
+    </div>
+    <div class="nw"><textarea placeholder="Notas…" oninput="aG(this);ss()">${x(nt)}</textarea></div>`;
+  return d;
+}
+
+/* ── BUILD LIVING ── */
+function mkL(id,ti='',src='',tm='',a='',l='',nt='',tp='n'){
+  const ib=tp==='b';
+  const d=document.createElement('div');d.className='asgn';d.id='l'+id;d.dataset.src=src;
+  d.innerHTML=`
+    <div class="crow">
+      <span class="anum ln"></span>
+      <input class="li-ti" value="${x(ti)}" placeholder="Título del tema…" oninput="ss()">
+      <input class="li-tm" value="${x(tm)}" placeholder="(min)" oninput="ss()">
+      <div class="crono no-print" data-s="0" data-r="0">
+        <span class="crd">0:00</span>
+        <button class="crb" onclick="cTog(this)">▶</button>
+        <button class="crb" onclick="cRes(this)">↺</button>
+      </div>
+      <div class="oact no-print">
+        <button class="bic" onclick="mvU(this)">🔼</button>
+        <button class="bic" onclick="mvD(this)">🔽</button>
+        <button class="bic del" onclick="this.closest('.asgn').remove();rn();ss()">✕</button>
+      </div>
+    </div>
+    <div class="prow">
+      ${ib
+        ?`<span class="lsm">Conductor</span>
+          <div style="position:relative"><input type="text" class="pinp lc" value="${x(a)}" placeholder="Hermano" oninput="ss();acI(this)"></div>
+          <span class="lsm" style="margin-left:8px">Lector</span>
+          <div style="position:relative"><input type="text" class="pinp ll" value="${x(l)}" placeholder="Hermano" oninput="ss();acI(this)"></div>`
+        :`<span class="lsm">Orador</span>
+          <div style="position:relative"><input type="text" class="pinp lo" value="${x(a)}" placeholder="Hermano" oninput="ss();acI(this)"></div>`}
+    </div>
+    <div class="nw"><textarea placeholder="Notas…" oninput="aG(this);ss()">${x(nt)}</textarea></div>`;
+  return d;
+}
+
+function addM(ti='',tm='',st='',hl='',nt=''){G('minC').appendChild(mkM(++cid,ti,tm,st,hl,nt));rn();ss();}
+function addL(ti='',src='',tm='',a='',l='',nt='',tp='n'){G('livC').appendChild(mkL(++cid,ti,src,tm,a,l,nt,tp));rn();ss();}
+
+function mvU(btn){const e=btn.closest('.asgn'),p=e.previousElementSibling;if(p?.classList.contains('asgn')){e.parentNode.insertBefore(e,p);rn();ss();}}
+function mvD(btn){const e=btn.closest('.asgn'),n=e.nextElementSibling;if(n?.classList.contains('asgn')){e.parentNode.insertBefore(n,e);rn();ss();}}
+
+function rn(){
+  const mn=[...G('minC').querySelectorAll('.mn')];
+  mn.forEach((el,i)=>{
+    el.textContent=(i+4)+'. ';
+    const asgn=el.closest('.asgn');
+    // Ayudante visible en todas las asignaciones de ministerio (incluida la 4)
+    const showAy=true;
+    const lbl=asgn.querySelector('.mh-lbl');
+    const mhInp=asgn.querySelector('.mh');
+    const mhDel=asgn.querySelector('.mh-del');
+    if(lbl)lbl.style.display=showAy?'':'none';
+    if(mhInp)mhInp.style.display=showAy?'':'none';
+    if(mhDel)mhDel.style.display=showAy?'':'none';
+  });
+  const ln=[...G('livC').querySelectorAll('.ln')];ln.forEach((el,i)=>el.textContent=(i+4+mn.length)+'. ');
+}
+
+/* ── ANUNCIOS ── */
+function addAn(txt=''){
+  const w=document.createElement('div');
+  w.className='nt-blk';
+  w.style.cssText='position:relative;margin-bottom:10px';
+  w.innerHTML=`<div style="display:flex;align-items:center;gap:4px;margin-bottom:4px">
+      <span style="font-size:.75em;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.06em;flex:1">Anuncio</span>
+      <button onclick="mvBlk(this,-1)" class="no-print bic" title="Subir">🔼</button>
+      <button onclick="mvBlk(this,1)" class="no-print bic" title="Bajar">🔽</button>
+    </div>
+    <textarea placeholder="Escribe el anuncio aquí…" oninput="ss()"
+    style="width:100%;min-height:66px;padding:8px 34px 8px 11px;border:1px solid var(--border);
+    border-radius:8px;background:var(--surface-alt);color:var(--text);font-family:inherit;font-size:.88em;resize:vertical">${x(txt)}</textarea>
+    <button onclick="this.closest('.nt-blk').remove();ss()" class="no-print"
+    style="position:absolute;bottom:8px;right:8px;width:22px;height:22px;background:#dc2626;
+    color:#fff;border:none;border-radius:50%;font-size:13px;cursor:pointer;font-weight:700;
+    display:flex;align-items:center;justify-content:center">✕</button>`;
+  G('anunC').appendChild(w);ss();
+}
+
+function mvBlk(el,dir){
+  const blk=el.closest('.nt-blk');
+  if(!blk)return;
+  const p=blk.parentNode;
+  if(dir===-1){const prev=blk.previousElementSibling;if(prev)p.insertBefore(blk,prev);}
+  else{const next=blk.nextElementSibling;if(next)p.insertBefore(next,blk);}
+  ss();
+}
+function mkNtBlock(label, placeholder, containerId){
+  const cont = G(containerId);
+  const w=document.createElement('div');
+  w.className='nt-blk';
+  w.style.cssText='position:relative;margin-bottom:10px';
+  w.innerHTML=`<div style="display:flex;align-items:center;gap:4px;margin-bottom:4px">
+      <span style="font-size:.75em;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.06em;flex:1">${label}</span>
+      <button onclick="mvBlk(this,-1)" class="no-print bic" title="Subir">🔼</button>
+      <button onclick="mvBlk(this,1)" class="no-print bic" title="Bajar">🔽</button>
+    </div>
+    <textarea placeholder="${placeholder}" oninput="ss()"
+    style="width:100%;min-height:66px;padding:8px 34px 8px 11px;border:1px solid var(--border);
+    border-radius:8px;background:var(--surface-alt);color:var(--text);font-family:inherit;font-size:.88em;resize:vertical"></textarea>
+    <button onclick="this.closest('.nt-blk').remove();ss()" class="no-print"
+    style="position:absolute;top:30px;right:8px;width:22px;height:22px;background:#dc2626;
+    color:#fff;border:none;border-radius:50%;font-size:13px;cursor:pointer;font-weight:700;
+    display:flex;align-items:center;justify-content:center">✕</button>`;
+  cont.appendChild(w);ss();
+}
+function addNtProg(){mkNtBlock('Programa semana siguiente','Aspectos interesantes del programa…','ntProgC');}
+function addNtEst(){mkNtBlock('Estudiantes próxima semana','Nombres de estudiantes que participarán…','ntEstC');}
+
+function lw(k){
+  const d=WD[k];if(!d)return;
+  cw=k;G('wkBtn').textContent=d.lb;
+  document.querySelectorAll('#wkDD a').forEach(a=>a.classList.toggle('wkon',a.dataset.wk===k));
+  G('lblR').value=d.rd;
+  sv('inS1',d.s1);
+  sv('lblT1',d.t1); G('lblT1t').textContent=d.t1t;
+  G('lblT2').textContent=d.t2; G('lblT2t').textContent=d.t2t;
+  sv('lblT3',d.t3); G('lblT3t').textContent=d.t3t;
+  G('minC').innerHTML=''; d.mi.forEach(m=>addM(m.ti,m.tm));
+  sv('inS2',d.s2);
+  G('livC').innerHTML=''; d.li.forEach(l=>addL(l.ti,l.src,l.tm,'','','',l.tp));
+  sv('inS3',d.s3); G('lblOt').textContent=d.ot||'';
+  // clear user fields
+  ['inOra1','inT1','inT2','inT3','inOra2'].forEach(id=>sv(id,''));
+  document.querySelectorAll('.ms,.mh,.lo,.lc,.ll').forEach(e=>e.value='');
+  document.querySelectorAll('.nw textarea').forEach(e=>{e.value='';aG(e);});
+  G('anunC').innerHTML='';
+  G('wkDD').classList.remove('open');
+  rn(); restW(k);
+}
+
+/* ── URL MODAL (removed) ── */
+
+/* ── UNDO ── */
+let _undoStack=[];
+const UNDO_MAX=10;
+function pushUndo(){
+  try{
+    const snap=JSON.stringify(collect());
+    if(_undoStack.length&&_undoStack[_undoStack.length-1]===snap)return;
+    _undoStack.push(snap);
+    if(_undoStack.length>UNDO_MAX)_undoStack.shift();
+  }catch(e){}
+}
+function doUndo(){
+  if(_undoStack.length<1){toast('⚠️ No hay más pasos para deshacer','err');return;}
+  _undoStack.pop(); // discard current state
+  if(_undoStack.length<1){toast('⚠️ No hay más pasos para deshacer','err');return;}
+  try{
+    const s=JSON.parse(_undoStack[_undoStack.length-1]);
+    applyState(s);
+    toast('↩️ Cambio deshecho','ok');
+  }catch(e){toast('⚠️ Error al deshacer','err');}
+}
+function applyState(s){
+  if(s.o1!==undefined)sv('inOra1',s.o1);
+  if(s.t1!==undefined)sv('inT1',s.t1);if(s.t2!==undefined)sv('inT2',s.t2);
+  if(s.t3!==undefined)sv('inT3',s.t3);if(s.o2!==undefined)sv('inOra2',s.o2);
+  if(s.s1!==undefined)sv('inS1',s.s1);if(s.s2!==undefined)sv('inS2',s.s2);if(s.s3!==undefined)sv('inS3',s.s3);
+  if(s.rd!==undefined)sv('lblR',s.rd);
+  if(s.lT1!==undefined)sv('lblT1',s.lT1);if(s.lT3!==undefined)sv('lblT3',s.lT3);
+  if(s.s1nt!==undefined){const e=G('inS1nt');if(e){e.value=s.s1nt;aG(e);}}
+  if(s.mi?.length!==undefined){G('minC').innerHTML='';(s.mi||[]).forEach(m=>addM(m.ti,m.tm,m.st,m.hl,m.nt));}
+  if(s.li?.length!==undefined){G('livC').innerHTML='';(s.li||[]).forEach(l=>addL(l.ti,l.src,l.tm,l.a,l.l,l.nt,l.tp));}
+  if(s.an?.length!==undefined){G('anunC').innerHTML='';(s.an||[]).forEach(a=>addAn(a));}
+  rn();document.querySelectorAll('textarea').forEach(aG);
+  renderLinks();
+}
+
+/* ── HYPERLINKS IN NOTES ── */
+function linkify(text){
+  return text.replace(/(https?:\/\/[^\s<>"]+)/g,'<a href="$1" target="_blank" rel="noopener">$1</a>');
+}
+function renderLinks(){
+  document.querySelectorAll('.nw').forEach(nw=>{
+    const ta=nw.querySelector('textarea');
+    if(!ta)return;
+    let ld=nw.querySelector('.nw-links');
+    const val=ta.value.trim();
+    const hasLink=/https?:\/\//.test(val);
+    if(hasLink){
+      if(!ld){ld=document.createElement('div');ld.className='nw-links no-print';nw.appendChild(ld);}
+      ld.innerHTML=linkify(val.replace(/\n/g,'<br>'));
+    } else if(ld){ld.remove();}
+  });
+}
+
+/* ── PRINT ── */
+function doPrint(){window.print();}
+
+/* ── EXPORT MODAL ── */
+function openExport(){G('exportM').classList.add('open');}
+function closeExport(){G('exportM').classList.remove('open');}
+
+function buildShareText(){
+  const cong=gv('inCong'),pres=gv('inPres')||'—',w=G('wkBtn').textContent;
+  let t=`📋 *PROGRAMA DE LA REUNIÓN*\n${cong?'🏛️ '+cong+'\n':''}🗓️ ${w}\n📖 Lectura: ${gv('lblR')}\n\n`;
+  t+=`✨ *INTRODUCCIÓN*\n👤 Presidente: ${pres}\n🎵 ${gv('inS1')}\n🙏 Oración: ${gv('inOra1')}\n\n`;
+  t+=`💎 *TESOROS*\n1. ${gv('lblT1')}: ${gv('inT1')}\n2. Busquemos perlas: ${gv('inT2')}\n3. ${gv('lblT3')}: ${gv('inT3')}\n\n`;
+  t+=`🗣️ *SEAMOS MEJORES MAESTROS*\n`;
+  let mn=4;G('minC').querySelectorAll('.asgn').forEach(el=>{
+    t+=`${mn++}. ${el.querySelector('.mi-ti')?.value||''}: ${el.querySelector('.ms')?.value||'—'}${el.querySelector('.mh')?.value?' / Ayudante: '+el.querySelector('.mh').value:''}\n`;});
+  t+=`\n🎵 ${gv('inS2')}\n\n🕊️ *NUESTRA VIDA CRISTIANA*\n`;
+  G('livC').querySelectorAll('.asgn').forEach(el=>{
+    const or=el.querySelector('.lo')?.value||el.querySelector('.lc')?.value||'—';
+    t+=`• ${el.querySelector('.li-ti')?.value||''}: ${or}\n`;});
+  t+=`\n🎵 ${gv('inS3')}\n🙏 Oración final: ${gv('inOra2')}`;
+  const an=[...G('anunC').querySelectorAll('textarea')].map(e=>e.value.trim()).filter(Boolean);
+  if(an.length)t+=`\n\n📋 *ANUNCIOS*\n`+an.map((a,i)=>`${i+1}. ${a}`).join('\n');
+  return t;
+}
+
+function expWhatsApp(){
+  const t=buildShareText();
+  const url='https://wa.me/?text='+encodeURIComponent(t);
+  window.open(url,'_blank');
+  closeExport();
+}
+function expEmail(){
+  const t=buildShareText();
+  const sub=encodeURIComponent('Programa Reunión - '+G('wkBtn').textContent);
+  const body=encodeURIComponent(t);
+  window.open(`mailto:?subject=${sub}&body=${body}`,'_blank');
+  closeExport();
+}
+
+/* ── SHARE (native/clipboard) ── */
+function doShare(){
+  const t=buildShareText();
+  if(navigator.share)navigator.share({title:'Programa',text:t}).catch(()=>{});
+  else navigator.clipboard.writeText(t).then(()=>toast('✓ Copiado al portapapeles','ok')).catch(()=>toast('⚠️ Error al copiar','err'));
+}
+let _sv2;
+function ss(){pushUndo();clearTimeout(_sv2);_sv2=setTimeout(()=>{saveW();showSav();renderLinks();},700);}
+
+function collect(){
+  const s={o1:gv('inOra1'),t1:gv('inT1'),t2:gv('inT2'),t3:gv('inT3'),o2:gv('inOra2'),
+    s1:gv('inS1'),s2:gv('inS2'),s3:gv('inS3'),rd:gv('lblR'),
+    lT1:gv('lblT1'),lT3:gv('lblT3'),
+    mi:[],li:[],an:[],nt:[]};
+  // Save s1 notes
+  const s1nt=G('inS1nt');if(s1nt)s.s1nt=s1nt.value;
+  G('minC').querySelectorAll('.asgn').forEach(el=>{
+    s.mi.push({ti:el.querySelector('.mi-ti')?.value||'',tm:el.querySelector('.mi-tm')?.value||'',
+      st:el.querySelector('.ms')?.value||'',hl:el.querySelector('.mh')?.value||'',
+      nt:el.querySelector('textarea')?.value||''});
+  });
+  G('livC').querySelectorAll('.asgn').forEach(el=>{
+    const ib=!!el.querySelector('.lc');
+    s.li.push({ti:el.querySelector('.li-ti')?.value||'',
+      src:el.dataset.src||'',
+      tm:el.querySelector('.li-tm')?.value||'',
+      a:ib?el.querySelector('.lc')?.value||'':el.querySelector('.lo')?.value||'',
+      l:el.querySelector('.ll')?.value||'',
+      nt:el.querySelector('textarea')?.value||'',tp:ib?'b':'n'});
+  });
+  G('anunC').querySelectorAll('textarea').forEach(e=>s.an.push(e.value));
+  document.querySelectorAll('#expTes .nw textarea').forEach(e=>s.nt.push(e.value));
+  return s;
+}
+function saveW(){
+  try{lss('pd_'+cw,JSON.stringify(collect()));
+    document.querySelectorAll('.pinp,.cinp').forEach(e=>{if(e.value.trim())savNm(e.value);});}catch(e){}
+}
+function restW(k){
+  try{
+    const raw=localStorage.getItem('pd_'+k);if(!raw)return;
+    const s=JSON.parse(raw);
+    if(s.o1)sv('inOra1',s.o1); if(s.t1)sv('inT1',s.t1); if(s.t2)sv('inT2',s.t2);
+    if(s.t3)sv('inT3',s.t3); if(s.o2)sv('inOra2',s.o2);
+    if(s.s1)sv('inS1',s.s1); if(s.s2)sv('inS2',s.s2); if(s.s3)sv('inS3',s.s3);
+    if(s.rd)sv('lblR',s.rd);
+    if(s.lT1)sv('lblT1',s.lT1); if(s.lT3)sv('lblT3',s.lT3);
+    if(s.s1nt){const e=G('inS1nt');if(e){e.value=s.s1nt;aG(e);}}
+    if(s.mi?.length){G('minC').innerHTML='';s.mi.forEach(m=>addM(m.ti,m.tm,m.st,m.hl,m.nt));}
+    if(s.li?.length){G('livC').innerHTML='';s.li.forEach(l=>addL(l.ti,l.src,l.tm,l.a,l.l,l.nt,l.tp));}
+    if(s.an?.length){G('anunC').innerHTML='';s.an.forEach(a=>addAn(a));}
+    if(s.nt?.length){const ts=document.querySelectorAll('#expTes .nw textarea');
+      s.nt.forEach((n,i)=>{if(ts[i]){ts[i].value=n;aG(ts[i]);}});}
+    rn(); document.querySelectorAll('textarea').forEach(aG);
+  }catch(e){}
+}
+
+/* ── EXPORT JSON ── */
+function expJSON(){
+  saveW();
+  const all={v:4,date:new Date().toISOString(),cong:gv('inCong'),pres:gv('inPres'),
+    theme:cTh,names:nms,cw,wks:{}};
+  Object.keys(WD).forEach(k=>{const r=localStorage.getItem('pd_'+k);if(r)try{all.wks[k]=JSON.parse(r);}catch(e){}});
+  all.wks[cw]=collect();
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(new Blob([JSON.stringify(all,null,2)],{type:'application/json'}));
+  a.download='presidencia_'+new Date().toISOString().slice(0,10)+'.json';a.click();
+  toast('✓ Archivo guardado','ok');
+}
+function impJSON(ev){
+  const file=ev.target.files[0];if(!file)return;
+  const rdr=new FileReader();
+  rdr.onload=e=>{
+    try{
+      const d=JSON.parse(e.target.result);if(!d.wks)throw 0;
+      if(d.cong){sv('inCong',d.cong);lss('presCong',d.cong);}
+      if(d.pres){sv('inPres',d.pres);lss('presPres',d.pres);}
+      if(d.theme){cTh=d.theme;lss('pTh',d.theme);apTh(d.theme);}
+      if(d.names){nms=d.names;lss('pNms',JSON.stringify(d.names));}
+      Object.entries(d.wks).forEach(([k,v])=>lss('pd_'+k,JSON.stringify(v)));
+      lw(d.cw||'w1');toast('✓ Planilla importada','ok');
+    }catch(e){toast('⚠️ Archivo no válido','err');}
+  };
+  rdr.readAsText(file);ev.target.value='';
+}
+
+/* ── SHARE ── */
+function doShare(){
+  const miss=[];
+  if(!gv('inOra1'))miss.push('Oración apertura');
+  if(!gv('inT1'))miss.push('Orador 1');if(!gv('inT2'))miss.push('Orador 2');
+  if(!gv('inT3'))miss.push('Estudiante 3');if(!gv('inOra2'))miss.push('Oración final');
+  if(miss.length){toast('⚠️ Faltan: '+miss.slice(0,2).join(', ')+(miss.length>2?'…':''),'err');return;}
+  const cong=gv('inCong'),pres=gv('inPres')||'—',w=G('wkBtn').textContent;
+  let t=`📋 *PROGRAMA DE LA REUNIÓN*\n${cong?'🏛️ '+cong+'\n':''}🗓️ ${w}\n📖 Lectura: ${gv('lblR')}\n\n`;
+  t+=`✨ *INTRODUCCIÓN*\n👤 Presidente: ${pres}\n🎵 ${gv('inS1')}\n🙏 Oración: ${gv('inOra1')}\n\n`;
+  t+=`💎 *TESOROS*\n1. ${G('lblT1').textContent}: ${gv('inT1')}\n2. ${G('lblT2').textContent}: ${gv('inT2')}\n3. ${G('lblT3').textContent}: ${gv('inT3')}\n\n`;
+  t+=`🗣️ *SEAMOS MEJORES MAESTROS*\n`;
+  let mn=4;G('minC').querySelectorAll('.asgn').forEach(el=>{
+    t+=`${mn++}. ${el.querySelector('.mi-ti')?.value||''}: ${el.querySelector('.ms')?.value||'—'}${el.querySelector('.mh')?.value?' / Ayudante: '+el.querySelector('.mh').value:''}\n`;});
+  t+=`\n🎵 ${gv('inS2')}\n\n🕊️ *NUESTRA VIDA CRISTIANA*\n`;
+  G('livC').querySelectorAll('.asgn').forEach(el=>{
+    const or=el.querySelector('.lo')?.value||el.querySelector('.lc')?.value||'—';
+    t+=`• ${el.querySelector('.li-ti')?.value||''}: ${or}\n`;});
+  t+=`\n🎵 ${gv('inS3')}\n🙏 Oración final: ${gv('inOra2')}`;
+  const an=[...G('anunC').querySelectorAll('textarea')].map(e=>e.value.trim()).filter(Boolean);
+  if(an.length)t+=`\n\n📋 *ANUNCIOS*\n`+an.map((a,i)=>`${i+1}. ${a}`).join('\n');
+  if(navigator.share)navigator.share({title:'Programa',text:t}).catch(()=>{});
+  else navigator.clipboard.writeText(t).then(()=>toast('✓ Copiado','ok')).catch(()=>toast('⚠️ Error','err'));
+}
+
+/* ── EXPORT JPG ── */
+async function expJpg(secId,fname){
+  if(!window.html2canvas){
+    await new Promise((res,rej)=>{
+      const s=document.createElement('script');
+      s.src='https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';
+      s.onload=res;s.onerror=rej;document.head.appendChild(s);
+    }).catch(()=>{toast('⚠️ Error cargando librería','err');});
+  }
+  if(!window.html2canvas)return;
+  const el=G(secId);if(!el){toast('⚠️ Sección no encontrada','err');return;}
+  const np=[...el.querySelectorAll('.no-print')];
+  np.forEach(e=>{e._pv=e.style.visibility;e.style.visibility='hidden';});
+  try{
+    const cs=getComputedStyle(document.documentElement);
+    const bg=(cs.getPropertyValue('--surface')||'#ffffff').trim();
+    const canvas=await html2canvas(el,{backgroundColor:bg,scale:2,useCORS:true,logging:false});
+    const a=document.createElement('a');
+    a.download=(fname||'seccion')+'.jpg';
+    a.href=canvas.toDataURL('image/jpeg',0.93);a.click();
+    toast('✓ Imagen exportada','ok');
+  }catch(e){toast('⚠️ Error al generar imagen','err');}
+  np.forEach(e=>{e.style.visibility=e._pv||'';});
+}
+
+
+/* ── VyMC: HOJA TABLERO DE ANUNCIOS ── */
+function doVyMC(){
+  const C={treasures:'#5b6770',ministry:'#c17a10',living:'#922725'};
+
+  // Leer texto plano de un input o span (sin entidades HTML dobles)
+  function raw(el){ return el ? (el.tagName==='INPUT'||el.tagName==='TEXTAREA' ? el.value : el.textContent) : ''; }
+
+  // Datos generales
+  const cong  = raw(G('inCong'));
+  const pres  = raw(G('inPres'));
+  const ora1  = raw(G('inOra1'));
+  const wkLbl = G('wkBtn').textContent.replace('📅 ','').trim();
+  const ora2  = raw(G('inOra2'));
+
+  // Tesoros
+  const t1ti = raw(G('lblT1'));
+  const t1t  = raw(G('lblT1t'));
+  const t1p  = raw(G('inT1'));
+  const t2ti = raw(G('lblT2'));
+  const t2t  = raw(G('lblT2t'));
+  const t2p  = raw(G('inT2'));
+  const t3ti = raw(G('lblT3'));
+  const t3t  = raw(G('lblT3t'));
+  const t3p  = raw(G('inT3'));
+
+  // Ministerio — WD como fuente de títulos, DOM para nombres ingresados por usuario
+  const miRows = [];
+  let miNum = 4;
+  const wdMi = WD[cw]?.mi || [];
+  G('minC').querySelectorAll('.asgn').forEach((el, i) => {
+    const wdEntry = wdMi[i] || {};
+    const tiDom = raw(el.querySelector('.mi-ti'));
+    miRows.push({
+      num: miNum++,
+      ti:  tiDom || wdEntry.ti || '',   // DOM primero, fallback a WD
+      tm:  raw(el.querySelector('.mi-tm')) || wdEntry.tm || '',
+      st:  raw(el.querySelector('.ms')),
+      hl:  raw(el.querySelector('.mh'))
+    });
+  });
+
+  // Vida cristiana — WD como fuente de títulos, DOM para nombres ingresados
+  const liRows = [];
+  let liNum = miNum;
+  const wdLi = WD[cw]?.li || [];
+  G('livC').querySelectorAll('.asgn').forEach((el, i) => {
+    const wdEntry = wdLi[i] || {};
+    const isB = !!el.querySelector('.lc');
+    const tiDom = raw(el.querySelector('.li-ti'));
+    liRows.push({
+      num:  liNum++,
+      ti:   tiDom || wdEntry.ti || '',   // DOM primero, fallback a WD
+      src:  el.dataset.src || wdEntry.src || '',
+      tm:   raw(el.querySelector('.li-tm')) || wdEntry.tm || '',
+      lc:   raw(el.querySelector('.lc')),
+      ll:   raw(el.querySelector('.ll')),
+      lo:   raw(el.querySelector('.lo')),
+      isB:  isB || wdEntry.tp === 'b'   // detectar tb via WD como respaldo
+    });
+  });
+
+  // Escapar para HTML — sin doble escape (los valores ya son texto plano)
+  function h(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+  // Fila de asignación: título + tiempo/personas en una sola línea fluida
+  function row(num, ti, tm, personas){
+    const pStr = personas.filter(p=>p.val)
+      .map(p=>`<span class="rl">${h(p.label)}:</span> <b>${h(p.val)}</b>`)
+      .join(' · ');
+    const tiPart = h(ti);
+    const tmPart = tm ? `<span class="tm"> ${h(tm)}</span>` : '';
+    const pPart  = pStr ? ` <span class="ps">— ${pStr}</span>` : '';
+    return `<tr><td class="n">${num}.</td><td class="c">${tiPart}${tmPart}${pPart}</td></tr>`;
+  }
+
+  // Fila de asignación "apilada": título en su línea, tiempo/personas en la línea siguiente
+  // (usada en Seamos mejores maestros y Nuestra vida cristiana para evitar que se corte)
+  function rowStacked(num, ti, tm, personas){
+    const pStr = personas.filter(p=>p.val)
+      .map(p=>`<span class="rl">${h(p.label)}:</span> <b>${h(p.val)}</b>`)
+      .join(' · ');
+    const tiPart = h(ti);
+    const tmPart = tm ? `<span class="tm">${h(tm)}</span>` : '';
+    const pPart  = pStr ? `<span class="ps">${pStr}</span>` : '';
+    const metaParts = [tmPart, pPart].filter(Boolean).join(' · ');
+    const metaLine = metaParts ? `<div class="rmeta">${metaParts}</div>` : '';
+    return `<tr><td class="n">${num}.</td><td class="c"><div class="rti">${tiPart}</div>${metaLine}</td></tr>`;
+  }
+
+  function secHdr(color, label){
+    return `<tr><td colspan="2" class="sh"><div class="sb" style="background:${color};-webkit-print-color-adjust:exact;print-color-adjust:exact">${h(label)}</div></td></tr>`;
+  }
+  function sep(){ return `<tr><td colspan="2"><hr class="sp"></td></tr>`; }
+
+  // Construir HTML de ministerio (título en su línea, tiempo/personas en la siguiente)
+  const miHtml = miRows.map(r => rowStacked(r.num, r.ti, r.tm, [
+    {label:'Estudiante', val:r.st},
+    {label:'Ayudante',   val:r.hl}
+  ])).join('');
+
+  // Construir HTML de vida cristiana (incluyendo asig 8 tipo 'b') — título en su línea, tiempo/personas en la siguiente
+  const liHtml = liRows.map(r => {
+    const fullTi = r.src ? `${r.ti} — ${r.src}` : r.ti;
+    return r.isB
+      ? rowStacked(r.num, fullTi, r.tm, [{label:'Conductor',val:r.lc},{label:'Lector',val:r.ll}])
+      : rowStacked(r.num, fullTi, r.tm, [{label:'Orador',   val:r.lo}]);
+  }).join('');
+
+  const pg = `<!DOCTYPE html>
+<html lang="es"><head>
+<meta charset="UTF-8">
+<title>VyMC – ${h(wkLbl)}</title>
+<style>
+  @page{size:letter portrait;margin:9mm 11mm}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+    background:#fff;color:#111;font-size:21px;line-height:1.38;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;
+  }
+  .page{border:2px solid #8a5a34;border-radius:6px;padding:12px 16px 11px}
+  .htitle{text-align:center;font-size:.78em;font-weight:900;color:#8a5a34;
+    text-transform:uppercase;letter-spacing:.05em;
+    border-bottom:2.5px solid #8a5a34;padding-bottom:4px;margin-bottom:5px}
+  .hmeta{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:3px}
+  .hweek{font-size:.85em;font-weight:800;color:#a8452f}
+  .hcong{font-size:.72em;font-weight:700;color:#8a5a34}
+  .hpres{font-size:.7em;color:#444;border-top:1px solid #ddd;border-bottom:1px solid #ddd;
+    padding:3px 0;margin-bottom:5px}
+  .hpres b{color:#111}
+  table{width:100%;border-collapse:collapse}
+  .sh{padding:5px 0 2px}
+  .sb{color:#fff;font-size:.68em;font-weight:800;text-transform:uppercase;
+    letter-spacing:.07em;padding:3px 10px;border-radius:4px;display:inline-block}
+  .n{width:24px;font-size:.7em;font-weight:800;color:#777;
+    vertical-align:top;padding:3px 4px 3px 0;white-space:nowrap}
+  .c{vertical-align:top;padding:3px 0 4px;font-size:.74em;line-height:1.42}
+  .rti{font-weight:600}
+  .rmeta{margin-top:1px;font-size:.96em}
+  .tm{color:#999;font-size:.9em}
+  .ps{color:#444}
+  .rl{color:#777;font-weight:400}
+  .sp{border:none;border-top:1px solid #e0e0e0;margin:4px 0}
+  .final{font-size:.74em;padding:4px 0;color:#333}
+  .final b{color:#111}
+  @media print{body{margin:0}.page{border-radius:4px}button{display:none!important}}
+</style></head>
+<body><div class="page">
+  <div class="htitle">Programa reunión Vida y Ministerio Cristiano</div>
+  <div class="hmeta">
+    <div class="hweek">📅 ${h(wkLbl)}</div>
+    <div class="hcong">${h(cong)}</div>
+  </div>
+  <div class="hpres">
+    <b>Presidente:</b> ${h(pres)||'—'} &nbsp;&nbsp;&nbsp; <b>Oración de apertura:</b> ${h(ora1)||'—'}
+  </div>
+  <table>
+    ${secHdr(C.treasures,'Tesoros de la Biblia')}
+    ${row('1',t1ti,t1t,[{label:'Orador',val:t1p}])}
+    ${row('2',t2ti,t2t,[{label:'Orador',val:t2p}])}
+    ${row('3',t3ti,t3t,[{label:'Estudiante',val:t3p}])}
+    ${sep()}
+    ${secHdr(C.ministry,'Seamos mejores maestros')}
+    ${miHtml||'<tr><td colspan="2" style="font-size:.7em;color:#bbb;padding:2px 0">—</td></tr>'}
+    ${sep()}
+    ${secHdr(C.living,'Nuestra vida cristiana')}
+    ${liHtml||'<tr><td colspan="2" style="font-size:.7em;color:#bbb;padding:2px 0">—</td></tr>'}
+    ${sep()}
+    <tr><td colspan="2" class="final"><b>Oración final:</b> ${h(ora2)||'—'}</td></tr>
+  </table>
+</div>
+<script>window.onload=()=>window.print();<\/script>
+</body></html>`;
+
+  const win=window.open('','_blank','width=860,height=1150');
+  win.document.write(pg);
+  win.document.close();
+}
+
+/* ── INIT ── */
+window.onload=()=>{
+  apTh(cTh);
+  const c=localStorage.getItem('presCong');
+  sv('inCong', c || 'PAUL HARRIS');
+  if(!c) lss('presCong','PAUL HARRIS');
+  const p=localStorage.getItem('presPres');if(p)sv('inPres',p);
+  const fs=localStorage.getItem('pFS');
+  if(fs){G('fsR').value=fs;applyFS(fs);}
+  lw('w1');
+  renderLinks();
+};
+</script>
+</body>
+</html>
